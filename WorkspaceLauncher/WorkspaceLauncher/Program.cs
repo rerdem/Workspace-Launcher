@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WorkspaceLauncher.Management;
 
 namespace WorkspaceLauncher
 {
@@ -14,9 +15,11 @@ namespace WorkspaceLauncher
         [STAThread]
         static void Main()
         {
+            WorkspaceManager wm = new WorkspaceManager();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainWindow());
+            Application.Run(new MainWindow(wm));
         }
     }
 }
