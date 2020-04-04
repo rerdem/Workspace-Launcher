@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WorkspaceLauncher.Data;
 using WorkspaceLauncher.Management;
 
 namespace WorkspaceLauncher
@@ -20,14 +21,19 @@ namespace WorkspaceLauncher
 
             InitializeComponent();
 
-            WorkspaceComboBox.ComboBox.DataSource = wm.Workspaces;
+            RefreshWorkspaceComboBox();
             WorkspaceComboBox.ComboBox.DisplayMember = "Name";
+            WorkspaceComboBox.ComboBox.SelectedIndex = wm.Workspaces.IndexOf(wm.GetCurrentWorkspace);
         }
 
         private void RefreshWorkspaceComboBox()
         {
+            WorkspaceComboBox.SelectedIndexChanged -= new EventHandler(WorkspaceComboBox_SelectedIndexChanged);
+
             WorkspaceComboBox.ComboBox.DataSource = null;
             WorkspaceComboBox.ComboBox.DataSource = wm.Workspaces;
+
+            WorkspaceComboBox.SelectedIndexChanged += new EventHandler(WorkspaceComboBox_SelectedIndexChanged);
         }
 
         private void RefreshAppListPanel()
@@ -38,6 +44,8 @@ namespace WorkspaceLauncher
         private void RefreshCurrentWorkspaceNameBox()
         {
             //TO DO
+            CurrentWorkspaceNameBox.DataBindings.Clear();
+            CurrentWorkspaceNameBox.DataBindings.Add("Text", wm.GetCurrentWorkspace, "Name", false, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         private void AddApplicationButton_Click(object sender, EventArgs e)
@@ -57,7 +65,15 @@ namespace WorkspaceLauncher
 
         private void WorkspaceComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             //TO DO
+            Workspace selectedWorkspace = WorkspaceComboBox.SelectedItem as Workspace;
+            if (selectedWorkspace!=null)
+            {
+                wm.CurrentWorkspaceID = selectedWorkspace.ID;
+            }
+
+            RefreshCurrentWorkspaceNameBox();
         }
     }
 }

@@ -12,9 +12,20 @@ namespace WorkspaceLauncher.Management
         public event EventHandler CurrentWorkspaceChanged;
 
         public List<Workspace> Workspaces { get; set; }
-        
+        public int CurrentWorkspaceID { get { return currentWorkspaceID; }
+        set
+            {
+                currentWorkspaceID = value;
+                SaveLastUsedWorkspaceID(currentWorkspaceID);
+
+                OnCurrentWorkspaceChanged(null);
+            }
+        }
+        public Workspace GetCurrentWorkspace { get { return Workspaces.Where(w => w.ID == CurrentWorkspaceID).First(); } }
+
         private SerializationManager sm;
         private int WorkspaceIDCounter;
+        private int currentWorkspaceID;
 
         public WorkspaceManager()
         {
@@ -25,8 +36,9 @@ namespace WorkspaceLauncher.Management
             WorkspaceIDCounter = 0;
             
             ImportWorkspaces();
+            LoadLastUsedWorkspaceID();
 
-            SetupTestingEnvironment();
+            //SetupTestingEnvironment();
         }
 
         private void SetupTestingEnvironment()
@@ -68,27 +80,38 @@ namespace WorkspaceLauncher.Management
 
         private void ImportWorkspaces()
         {
-            Workspaces = sm.ImportWorkspacesFromJson();
+            //Workspaces = sm.ImportWorkspacesFromJson();
+            SetupTestingEnvironment();
 
             if (Workspaces.Count > 0)
             {
                 SyncWorkspaceIDCounter();
                 //TO DO
-                //SetCurrentWorkspace(Properties.Settings.Default.LastUsedWorkspaceID);
                 //!!!!!! Validate exe paths or throw warning and deactivate launch buttons!!!!!!!
             }
             else
             {
                 AddWorkspace();
             }
-
         }
 
-        //private void SaveLastUsedWorkspaceID()
-        //{
-        //    Properties.Settings.Default.LastUsedWorkspaceID = 0;
-        //    Properties.Settings.Default.Save();
-        //}
+        private void LoadLastUsedWorkspaceID()
+        {
+            if (Workspaces.Where(w => w.ID == Properties.Settings.Default.LastUsedWorkspaceID).First() != null)
+            {
+                CurrentWorkspaceID = Properties.Settings.Default.LastUsedWorkspaceID;
+            }
+            else
+            {
+                CurrentWorkspaceID = 0;
+            }
+        }
+
+        private void SaveLastUsedWorkspaceID(int lastUsedWorkspaceID)
+        {
+            Properties.Settings.Default.LastUsedWorkspaceID = lastUsedWorkspaceID;
+            Properties.Settings.Default.Save();
+        }
 
         protected virtual void OnCurrentWorkspaceChanged(EventArgs e)
         {
