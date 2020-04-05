@@ -14,6 +14,8 @@ namespace WorkspaceLauncher
 {
     public partial class ApplicationEntryControl : UserControl
     {
+        public event EventHandler<ApplicationEntryEventArgs> DeletionRequested;
+
         private ApplicationEntry Entry;
 
         public ApplicationEntryControl(ApplicationEntry entry)
@@ -46,12 +48,23 @@ namespace WorkspaceLauncher
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            //TO DO
+            ApplicationEntryEventArgs args = new ApplicationEntryEventArgs();
+            args.Entry = Entry;
+            OnDeletionRequested(args);
         }
 
         private void LaunchButton_Click(object sender, EventArgs e)
         {
             //TO DO
+        }
+
+        protected virtual void OnDeletionRequested(ApplicationEntryEventArgs e)
+        {
+            EventHandler<ApplicationEntryEventArgs> handler = DeletionRequested;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
         }
     }
 }

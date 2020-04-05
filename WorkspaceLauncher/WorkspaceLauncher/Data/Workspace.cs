@@ -81,11 +81,11 @@ namespace WorkspaceLauncher.Data
             EntryIDCounter++;
         }
 
-        //public void RemoveApplicationEntry(int entryID)
-        //{
-        //    ApplicationEntries.RemoveAt(ApplicationEntries.FindIndex(app => app.ID == entryID));
+        public void RemoveApplicationEntry(int entryID)
+        {
+            ApplicationEntries.RemoveAt(ApplicationEntries.FindIndex(app => app.ID == entryID));
 
-        //}
+        }
 
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {

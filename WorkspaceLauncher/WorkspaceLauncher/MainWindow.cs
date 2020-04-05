@@ -18,12 +18,14 @@ namespace WorkspaceLauncher
         public MainWindow(WorkspaceManager manager)
         {
             wm = manager;
+            wm.CurrentWorkspaceChanged += new EventHandler(wm_CurrentWorkspaceChanged);
+            wm.CurrentApplicationListModified += new EventHandler(wm_CurrentApplicationListModified);
 
             InitializeComponent();
 
             RefreshWorkspaceComboBox();
             WorkspaceComboBox.ComboBox.DisplayMember = "Name";
-            WorkspaceComboBox.ComboBox.SelectedIndex = wm.Workspaces.IndexOf(wm.GetCurrentWorkspace);
+            WorkspaceComboBox.ComboBox.SelectedIndex = wm.Workspaces.IndexOf(wm.CurrentWorkspace);
         }
 
         private void RefreshWorkspaceComboBox()
@@ -41,22 +43,30 @@ namespace WorkspaceLauncher
             //TO DO
             foreach (ApplicationEntryControl c in AppListPanel.Controls)
             {
+                c.DeletionRequested -= new EventHandler<ApplicationEntryEventArgs>(aec_DeletionRequested);
                 c.Dispose();
             }
 
             AppListPanel.Controls.Clear();
 
-            foreach(ApplicationEntry entry in wm.GetCurrentWorkspace.ApplicationEntries)
+            foreach(ApplicationEntry entry in wm.CurrentWorkspace.ApplicationEntries)
             {
-                AppListPanel.Controls.Add(new ApplicationEntryControl(entry));
+                ApplicationEntryControl control = new ApplicationEntryControl(entry);
+                control.DeletionRequested += new EventHandler<ApplicationEntryEventArgs>(aec_DeletionRequested);
+                AppListPanel.Controls.Add(control);
             }
+        }
+
+        private void aec_DeletionRequested(object sender, ApplicationEntryEventArgs e)
+        {
+            wm.RemoveEntryFromCurrentWorkspace(e.Entry.ID);
         }
 
         private void RefreshCurrentWorkspaceNameBox()
         {
             //TO DO
             CurrentWorkspaceNameBox.DataBindings.Clear();
-            CurrentWorkspaceNameBox.DataBindings.Add("Text", wm.GetCurrentWorkspace, "Name", false, DataSourceUpdateMode.OnPropertyChanged);
+            CurrentWorkspaceNameBox.DataBindings.Add("Text", wm.CurrentWorkspace, "Name", false, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         private void AddApplicationButton_Click(object sender, EventArgs e)
@@ -83,7 +93,15 @@ namespace WorkspaceLauncher
             {
                 wm.CurrentWorkspaceID = selectedWorkspace.ID;
             }
+        }
 
+        private void wm_CurrentApplicationListModified(object sender, EventArgs e)
+        {
+            RefreshAppListPanel();
+        }
+
+        private void wm_CurrentWorkspaceChanged(object sender, EventArgs e)
+        {
             RefreshCurrentWorkspaceNameBox();
             RefreshAppListPanel();
         }

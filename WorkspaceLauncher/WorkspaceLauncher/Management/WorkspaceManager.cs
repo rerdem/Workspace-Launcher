@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using WorkspaceLauncher.Data;
 
 namespace WorkspaceLauncher.Management
@@ -10,6 +11,7 @@ namespace WorkspaceLauncher.Management
     public class WorkspaceManager
     {
         public event EventHandler CurrentWorkspaceChanged;
+        public event EventHandler CurrentApplicationListModified;
 
         public List<Workspace> Workspaces { get; set; }
         public int CurrentWorkspaceID { get { return currentWorkspaceID; }
@@ -21,7 +23,7 @@ namespace WorkspaceLauncher.Management
                 OnCurrentWorkspaceChanged(null);
             }
         }
-        public Workspace GetCurrentWorkspace { get { return Workspaces.Where(w => w.ID == CurrentWorkspaceID).First(); } }
+        public Workspace CurrentWorkspace { get { return Workspaces.Where(w => w.ID == CurrentWorkspaceID).First(); } }
 
         private SerializationManager sm;
         private int WorkspaceIDCounter;
@@ -64,6 +66,13 @@ namespace WorkspaceLauncher.Management
         {
             Workspaces.Add(new Workspace(WorkspaceIDCounter, name));
             WorkspaceIDCounter++;
+        }
+
+        public void RemoveEntryFromCurrentWorkspace(int entryID)
+        {
+            CurrentWorkspace.RemoveApplicationEntry(entryID);
+
+            OnCurrentApplicationListModified(null);
         }
 
         private void SyncWorkspaceIDCounter()
@@ -113,9 +122,23 @@ namespace WorkspaceLauncher.Management
             Properties.Settings.Default.Save();
         }
 
+        private void SaveWorkspaces()
+        {
+            sm.ExportWorkspacesToJSON(Workspaces);
+        }
+
         protected virtual void OnCurrentWorkspaceChanged(EventArgs e)
         {
             EventHandler handler = CurrentWorkspaceChanged;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        protected virtual void OnCurrentApplicationListModified(EventArgs e)
+        {
+            EventHandler handler = CurrentApplicationListModified;
             if (handler != null)
             {
                 handler(this, e);
