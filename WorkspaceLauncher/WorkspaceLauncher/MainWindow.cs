@@ -39,6 +39,17 @@ namespace WorkspaceLauncher
         private void RefreshAppListPanel()
         {
             //TO DO
+            foreach (ApplicationEntryControl c in AppListPanel.Controls)
+            {
+                c.Dispose();
+            }
+
+            AppListPanel.Controls.Clear();
+
+            foreach(ApplicationEntry entry in wm.GetCurrentWorkspace.ApplicationEntries)
+            {
+                AppListPanel.Controls.Add(new ApplicationEntryControl(entry));
+            }
         }
 
         private void RefreshCurrentWorkspaceNameBox()
@@ -74,6 +85,7 @@ namespace WorkspaceLauncher
             }
 
             RefreshCurrentWorkspaceNameBox();
+            RefreshAppListPanel();
         }
     }
 }
