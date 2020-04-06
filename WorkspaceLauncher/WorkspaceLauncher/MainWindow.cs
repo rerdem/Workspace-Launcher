@@ -18,14 +18,21 @@ namespace WorkspaceLauncher
         public MainWindow(WorkspaceManager manager)
         {
             wm = manager;
+            wm.WorkspaceListModified += new EventHandler(wm_WorkspaceListModified);
             wm.CurrentWorkspaceChanged += new EventHandler(wm_CurrentWorkspaceChanged);
             wm.CurrentApplicationListModified += new EventHandler(wm_CurrentApplicationListModified);
 
             InitializeComponent();
 
+            RefreshAllContent();
+
+        }
+
+        private void RefreshAllContent()
+        {
             RefreshWorkspaceComboBox();
-            WorkspaceComboBox.ComboBox.DisplayMember = "Name";
-            WorkspaceComboBox.ComboBox.SelectedIndex = wm.Workspaces.IndexOf(wm.CurrentWorkspace);
+            RefreshCurrentWorkspaceNameBox();
+            RefreshAppListPanel();
         }
 
         private void RefreshWorkspaceComboBox()
@@ -36,11 +43,13 @@ namespace WorkspaceLauncher
             WorkspaceComboBox.ComboBox.DataSource = wm.Workspaces;
 
             WorkspaceComboBox.SelectedIndexChanged += new EventHandler(WorkspaceComboBox_SelectedIndexChanged);
+
+            WorkspaceComboBox.ComboBox.DisplayMember = "Name";
+            WorkspaceComboBox.ComboBox.SelectedIndex = wm.Workspaces.IndexOf(wm.CurrentWorkspace);
         }
 
         private void RefreshAppListPanel()
         {
-            //TO DO
             foreach (ApplicationEntryControl c in AppListPanel.Controls)
             {
                 c.DeletionRequested -= new EventHandler<ApplicationEntryEventArgs>(aec_DeletionRequested);
@@ -57,21 +66,15 @@ namespace WorkspaceLauncher
             }
         }
 
-        private void aec_DeletionRequested(object sender, ApplicationEntryEventArgs e)
-        {
-            wm.RemoveEntryFromCurrentWorkspace(e.Entry.ID);
-        }
-
         private void RefreshCurrentWorkspaceNameBox()
         {
-            //TO DO
             CurrentWorkspaceNameBox.DataBindings.Clear();
             CurrentWorkspaceNameBox.DataBindings.Add("Text", wm.CurrentWorkspace, "Name", false, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         private void AddApplicationButton_Click(object sender, EventArgs e)
         {
-            //TO DO
+            wm.AddEntryToCurrentWorspace();
         }
 
         private void NewWorkspaceButton_Click(object sender, EventArgs e)
@@ -81,18 +84,27 @@ namespace WorkspaceLauncher
 
         private void DeleteCurrentWorkspaceButton_Click(object sender, EventArgs e)
         {
-            //TO DO
+            wm.RemoveCurrentWorkspace();
         }
 
         private void WorkspaceComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             
-            //TO DO
             Workspace selectedWorkspace = WorkspaceComboBox.SelectedItem as Workspace;
             if (selectedWorkspace!=null)
             {
                 wm.CurrentWorkspaceID = selectedWorkspace.ID;
             }
+        }
+
+        private void aec_DeletionRequested(object sender, ApplicationEntryEventArgs e)
+        {
+            wm.RemoveEntryFromCurrentWorkspace(e.Entry.ID);
+        }
+
+        private void wm_WorkspaceListModified(object sender, EventArgs e)
+        {
+            RefreshWorkspaceComboBox();
         }
 
         private void wm_CurrentApplicationListModified(object sender, EventArgs e)

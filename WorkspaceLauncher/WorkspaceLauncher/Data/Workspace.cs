@@ -12,6 +12,7 @@ namespace WorkspaceLauncher.Data
     public class Workspace : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+        public event EventHandler EntryModified;
 
         public int ID
         {
@@ -54,14 +55,15 @@ namespace WorkspaceLauncher.Data
         }
 
         [JsonConstructor]
-        public Workspace(int id, string name, List<ApplicationEntry> entries)
+        public Workspace(int id, string name, List<ApplicationEntry> applicationEntries)
         {
             ID = id;
             Name = name;
-            ApplicationEntries = entries;
+            ApplicationEntries = applicationEntries;
             
             EntryIDCounter = 0;
             SyncEntryIDCounter();
+            SubscribeToAllEntryPropertyChangedEvents();
         }
 
         private void SyncEntryIDCounter()
@@ -77,19 +79,45 @@ namespace WorkspaceLauncher.Data
 
         public void AddApplicationEntry()
         {
-            ApplicationEntries.Add(new ApplicationEntry(EntryIDCounter));
+            ApplicationEntry entry = new ApplicationEntry(EntryIDCounter);
+            entry.PropertyChanged += new PropertyChangedEventHandler(ae_PropertyChanged);
+            ApplicationEntries.Add(entry);
             EntryIDCounter++;
         }
 
         public void RemoveApplicationEntry(int entryID)
         {
-            ApplicationEntries.RemoveAt(ApplicationEntries.FindIndex(app => app.ID == entryID));
+            int indexToDelete = ApplicationEntries.FindIndex(app => app.ID == entryID);
+            ApplicationEntries.ElementAt(indexToDelete).PropertyChanged -= new PropertyChangedEventHandler(ae_PropertyChanged);
+            ApplicationEntries.RemoveAt(indexToDelete);
 
+        }
+
+        private void SubscribeToAllEntryPropertyChangedEvents()
+        {
+            foreach (ApplicationEntry entry in ApplicationEntries)
+            {
+                entry.PropertyChanged += new PropertyChangedEventHandler(ae_PropertyChanged);
+            }
+        }
+
+        private void ae_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            OnEntryModified(null);
         }
 
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        protected virtual void OnEntryModified(EventArgs e)
+        {
+            EventHandler handler = EntryModified;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
         }
     }
 }

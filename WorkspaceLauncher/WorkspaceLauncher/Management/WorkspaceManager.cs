@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace WorkspaceLauncher.Management
 {
     public class WorkspaceManager
     {
+        public event EventHandler WorkspaceListModified;
         public event EventHandler CurrentWorkspaceChanged;
         public event EventHandler CurrentApplicationListModified;
 
@@ -19,11 +21,18 @@ namespace WorkspaceLauncher.Management
             {
                 currentWorkspaceID = value;
                 SaveLastUsedWorkspaceID(currentWorkspaceID);
+                SubscribeToCurrentWorkspaceEvents();
 
                 OnCurrentWorkspaceChanged(null);
             }
         }
-        public Workspace CurrentWorkspace { get { return Workspaces.Where(w => w.ID == CurrentWorkspaceID).First(); } }
+        public Workspace CurrentWorkspace 
+        { 
+            get 
+            {
+                return Workspaces.Where(w => w.ID == CurrentWorkspaceID).First();
+            } 
+        }
 
         private SerializationManager sm;
         private int WorkspaceIDCounter;
@@ -39,38 +48,65 @@ namespace WorkspaceLauncher.Management
             
             ImportWorkspaces();
             LoadLastUsedWorkspaceID();
-
-            //SetupTestingEnvironment();
-        }
-
-        private void SetupTestingEnvironment()
-        {
-            AddWorkspace("test1");
-            AddWorkspace("test2");
-            AddWorkspace("test3");
-
-            foreach(Workspace w in Workspaces)
-            {
-                w.AddApplicationEntry();
-                w.AddApplicationEntry();
-                w.AddApplicationEntry();
-            }
         }
 
         public void AddWorkspace()
         {
-            Workspaces.Add(new Workspace(WorkspaceIDCounter, $"Workspace_{DateTime.Now.ToString("yyyy-MM-dd_HHmmss")}"));
-            WorkspaceIDCounter++;
+            AddWorkspaceWithoutEvent();
+
+            OnWorkspaceListModified(null);
         }
-        public void AddWorkspace(string name)
+
+        private void AddWorkspaceWithoutEvent()
         {
-            Workspaces.Add(new Workspace(WorkspaceIDCounter, name));
+            Workspaces.Add(new Workspace(WorkspaceIDCounter, $"Workspace_{DateTime.Now.ToString("yyyy-MM-dd_HHmmss")}"));
+            CurrentWorkspaceID = Workspaces.Last().ID;
             WorkspaceIDCounter++;
+            
+            SaveWorkspaces();
+        }
+
+        public void RemoveCurrentWorkspace()
+        {
+            int indexToDelete = Workspaces.IndexOf(CurrentWorkspace);
+            Workspaces.RemoveAt(indexToDelete);
+
+            if (indexToDelete > 0)
+            {
+                CurrentWorkspaceID = Workspaces.ElementAt(indexToDelete - 1).ID;
+            }
+            else
+            {
+                if (Workspaces.Count <= 0)
+                {
+                    AddWorkspaceWithoutEvent();
+                    CurrentWorkspaceID = Workspaces.ElementAt(0).ID;
+                }
+                else
+                {
+                    CurrentWorkspaceID = Workspaces.ElementAt(indexToDelete).ID;
+                }
+            }
+
+            SaveWorkspaces();
+
+            OnWorkspaceListModified(null);
+        }
+
+        public void AddEntryToCurrentWorspace()
+        {
+            CurrentWorkspace.AddApplicationEntry();
+
+            SaveWorkspaces();
+
+            OnCurrentApplicationListModified(null);
         }
 
         public void RemoveEntryFromCurrentWorkspace(int entryID)
         {
             CurrentWorkspace.RemoveApplicationEntry(entryID);
+
+            SaveWorkspaces();
 
             OnCurrentApplicationListModified(null);
         }
@@ -89,8 +125,7 @@ namespace WorkspaceLauncher.Management
 
         private void ImportWorkspaces()
         {
-            //Workspaces = sm.ImportWorkspacesFromJson();
-            SetupTestingEnvironment();
+            Workspaces = sm.ImportWorkspacesFromJson();
 
             if (Workspaces.Count > 0)
             {
@@ -100,13 +135,14 @@ namespace WorkspaceLauncher.Management
             }
             else
             {
-                AddWorkspace();
+                AddWorkspaceWithoutEvent();
             }
         }
 
+
         private void LoadLastUsedWorkspaceID()
         {
-            if (Workspaces.Where(w => w.ID == Properties.Settings.Default.LastUsedWorkspaceID).First() != null)
+            if (Workspaces.Where(w => w.ID == Properties.Settings.Default.LastUsedWorkspaceID) != null)
             {
                 CurrentWorkspaceID = Properties.Settings.Default.LastUsedWorkspaceID;
             }
@@ -120,6 +156,27 @@ namespace WorkspaceLauncher.Management
         {
             Properties.Settings.Default.LastUsedWorkspaceID = lastUsedWorkspaceID;
             Properties.Settings.Default.Save();
+        }
+
+        private void SubscribeToCurrentWorkspaceEvents()
+        {
+            CurrentWorkspace.PropertyChanged += new PropertyChangedEventHandler(cw_PropertyChanged);
+            CurrentWorkspace.EntryModified += new EventHandler(cw_EntryModified);
+        }
+
+        private void cw_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Name")
+            {
+                SaveWorkspaces();
+
+                OnWorkspaceListModified(null);
+            }
+        }
+
+        private void cw_EntryModified(object sender, EventArgs e)
+        {
+            SaveWorkspaces();
         }
 
         private void SaveWorkspaces()
@@ -139,6 +196,15 @@ namespace WorkspaceLauncher.Management
         protected virtual void OnCurrentApplicationListModified(EventArgs e)
         {
             EventHandler handler = CurrentApplicationListModified;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        protected virtual void OnWorkspaceListModified(EventArgs e)
+        {
+            EventHandler handler = WorkspaceListModified;
             if (handler != null)
             {
                 handler(this, e);

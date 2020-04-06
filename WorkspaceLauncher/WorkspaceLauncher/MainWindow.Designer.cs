@@ -35,12 +35,12 @@
             this.NewWorkspaceButton = new System.Windows.Forms.ToolStripButton();
             this.DeleteCurrentWorkspaceButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.CurrentWorkspaceLabel = new System.Windows.Forms.ToolStripLabel();
+            this.WorkspaceComboBox = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.LaunchButton = new System.Windows.Forms.ToolStripButton();
             this.AppListPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.CurrentWorkspaceNameBox = new System.Windows.Forms.TextBox();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.CurrentWorkspaceLabel = new System.Windows.Forms.ToolStripLabel();
-            this.WorkspaceComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.MainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -102,6 +102,27 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 38);
             // 
+            // CurrentWorkspaceLabel
+            // 
+            this.CurrentWorkspaceLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.CurrentWorkspaceLabel.Name = "CurrentWorkspaceLabel";
+            this.CurrentWorkspaceLabel.Size = new System.Drawing.Size(111, 35);
+            this.CurrentWorkspaceLabel.Text = "Current Workspace:";
+            // 
+            // WorkspaceComboBox
+            // 
+            this.WorkspaceComboBox.AutoSize = false;
+            this.WorkspaceComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.WorkspaceComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.WorkspaceComboBox.Name = "WorkspaceComboBox";
+            this.WorkspaceComboBox.Size = new System.Drawing.Size(200, 23);
+            this.WorkspaceComboBox.SelectedIndexChanged += new System.EventHandler(this.WorkspaceComboBox_SelectedIndexChanged);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 38);
+            // 
             // LaunchButton
             // 
             this.LaunchButton.AutoToolTip = false;
@@ -130,27 +151,6 @@
             this.CurrentWorkspaceNameBox.Name = "CurrentWorkspaceNameBox";
             this.CurrentWorkspaceNameBox.Size = new System.Drawing.Size(469, 29);
             this.CurrentWorkspaceNameBox.TabIndex = 4;
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 38);
-            // 
-            // CurrentWorkspaceLabel
-            // 
-            this.CurrentWorkspaceLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.CurrentWorkspaceLabel.Name = "CurrentWorkspaceLabel";
-            this.CurrentWorkspaceLabel.Size = new System.Drawing.Size(111, 35);
-            this.CurrentWorkspaceLabel.Text = "Current Workspace:";
-            // 
-            // WorkspaceComboBox
-            // 
-            this.WorkspaceComboBox.AutoSize = false;
-            this.WorkspaceComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.WorkspaceComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.WorkspaceComboBox.Name = "WorkspaceComboBox";
-            this.WorkspaceComboBox.Size = new System.Drawing.Size(200, 23);
-            this.WorkspaceComboBox.SelectedIndexChanged += new System.EventHandler(this.WorkspaceComboBox_SelectedIndexChanged);
             // 
             // MainWindow
             // 
