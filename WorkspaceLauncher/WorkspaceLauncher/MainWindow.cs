@@ -117,5 +117,10 @@ namespace WorkspaceLauncher
             RefreshCurrentWorkspaceNameBox();
             RefreshAppListPanel();
         }
+
+        private void LaunchButton_Click(object sender, EventArgs e)
+        {
+            wm.LaunchAllAppsOfCurrentWorkspace();
+        }
     }
 }

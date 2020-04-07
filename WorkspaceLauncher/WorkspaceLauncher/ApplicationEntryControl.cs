@@ -55,7 +55,7 @@ namespace WorkspaceLauncher
 
         private void LaunchButton_Click(object sender, EventArgs e)
         {
-            //TO DO
+            Entry.StartApplication();
         }
 
         protected virtual void OnDeletionRequested(ApplicationEntryEventArgs e)

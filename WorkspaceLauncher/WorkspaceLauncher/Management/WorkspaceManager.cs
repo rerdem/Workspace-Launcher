@@ -111,6 +111,14 @@ namespace WorkspaceLauncher.Management
             OnCurrentApplicationListModified(null);
         }
 
+        public void LaunchAllAppsOfCurrentWorkspace()
+        {
+            foreach (ApplicationEntry entry in CurrentWorkspace.ApplicationEntries)
+            {
+                entry.StartApplication();
+            }
+        }
+
         private void SyncWorkspaceIDCounter()
         {
             WorkspaceIDCounter = 0;
@@ -138,7 +146,6 @@ namespace WorkspaceLauncher.Management
                 AddWorkspaceWithoutEvent();
             }
         }
-
 
         private void LoadLastUsedWorkspaceID()
         {

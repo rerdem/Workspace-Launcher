@@ -35,13 +35,13 @@
             this.ParameterLabel = new System.Windows.Forms.Label();
             this.ParameterBox = new System.Windows.Forms.TextBox();
             this.ButtonPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.DeleteButton = new System.Windows.Forms.Button();
             this.LaunchButton = new System.Windows.Forms.Button();
+            this.DeleteButton = new System.Windows.Forms.Button();
             this.PathPanel = new System.Windows.Forms.Panel();
+            this.PathValueLabel = new System.Windows.Forms.Label();
             this.PathButton = new System.Windows.Forms.Button();
             this.NameBox = new System.Windows.Forms.TextBox();
             this.MainPanel = new System.Windows.Forms.Panel();
-            this.PathValueLabel = new System.Windows.Forms.Label();
             this.PathToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.TablePanel.SuspendLayout();
             this.ButtonPanel.SuspendLayout();
@@ -127,16 +127,6 @@
             this.ButtonPanel.TabIndex = 6;
             this.ButtonPanel.WrapContents = false;
             // 
-            // DeleteButton
-            // 
-            this.DeleteButton.Location = new System.Drawing.Point(478, 3);
-            this.DeleteButton.Name = "DeleteButton";
-            this.DeleteButton.Size = new System.Drawing.Size(75, 23);
-            this.DeleteButton.TabIndex = 0;
-            this.DeleteButton.Text = "Delete Entry";
-            this.DeleteButton.UseVisualStyleBackColor = true;
-            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
-            // 
             // LaunchButton
             // 
             this.LaunchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -148,6 +138,16 @@
             this.LaunchButton.UseVisualStyleBackColor = true;
             this.LaunchButton.Click += new System.EventHandler(this.LaunchButton_Click);
             // 
+            // DeleteButton
+            // 
+            this.DeleteButton.Location = new System.Drawing.Point(478, 3);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(75, 23);
+            this.DeleteButton.TabIndex = 0;
+            this.DeleteButton.Text = "Delete Entry";
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            // 
             // PathPanel
             // 
             this.PathPanel.Controls.Add(this.PathValueLabel);
@@ -157,6 +157,20 @@
             this.PathPanel.Name = "PathPanel";
             this.PathPanel.Size = new System.Drawing.Size(231, 36);
             this.PathPanel.TabIndex = 7;
+            // 
+            // PathValueLabel
+            // 
+            this.PathValueLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PathValueLabel.AutoEllipsis = true;
+            this.PathValueLabel.BackColor = System.Drawing.SystemColors.Control;
+            this.PathValueLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PathValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PathValueLabel.Location = new System.Drawing.Point(0, 0);
+            this.PathValueLabel.Name = "PathValueLabel";
+            this.PathValueLabel.Size = new System.Drawing.Size(202, 26);
+            this.PathValueLabel.TabIndex = 2;
+            this.PathValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // PathButton
             // 
@@ -189,20 +203,6 @@
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(720, 107);
             this.MainPanel.TabIndex = 1;
-            // 
-            // PathValueLabel
-            // 
-            this.PathValueLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PathValueLabel.AutoEllipsis = true;
-            this.PathValueLabel.BackColor = System.Drawing.SystemColors.Control;
-            this.PathValueLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PathValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PathValueLabel.Location = new System.Drawing.Point(0, 0);
-            this.PathValueLabel.Name = "PathValueLabel";
-            this.PathValueLabel.Size = new System.Drawing.Size(202, 26);
-            this.PathValueLabel.TabIndex = 2;
-            this.PathValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ApplicationEntryControl
             // 

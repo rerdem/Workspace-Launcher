@@ -133,6 +133,7 @@
             this.LaunchButton.Text = "Launch All";
             this.LaunchButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.LaunchButton.ToolTipText = "Launch All Applications in Current Workspace";
+            this.LaunchButton.Click += new System.EventHandler(this.LaunchButton_Click);
             // 
             // AppListPanel
             // 

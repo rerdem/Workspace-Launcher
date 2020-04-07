@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using WorkspaceLauncher.Management;
 
 namespace WorkspaceLauncher.Data
 {
@@ -82,6 +83,11 @@ namespace WorkspaceLauncher.Data
             Name = name;
             Path = path;
             Parameters = parameters;
+        }
+
+        public void StartApplication()
+        {
+            ProcessStarter.StartProcess(Path, Parameters);
         }
 
         protected void OnPropertyChanged([CallerMemberName] string name = null)
