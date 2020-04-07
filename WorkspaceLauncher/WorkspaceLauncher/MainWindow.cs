@@ -41,10 +41,10 @@ namespace WorkspaceLauncher
 
             WorkspaceComboBox.ComboBox.DataSource = null;
             WorkspaceComboBox.ComboBox.DataSource = wm.Workspaces;
+            WorkspaceComboBox.ComboBox.DisplayMember = "Name";
 
             WorkspaceComboBox.SelectedIndexChanged += new EventHandler(WorkspaceComboBox_SelectedIndexChanged);
 
-            WorkspaceComboBox.ComboBox.DisplayMember = "Name";
             WorkspaceComboBox.ComboBox.SelectedIndex = wm.Workspaces.IndexOf(wm.CurrentWorkspace);
         }
 
@@ -79,7 +79,7 @@ namespace WorkspaceLauncher
 
         private void NewWorkspaceButton_Click(object sender, EventArgs e)
         {
-            //TO DO
+            wm.AddWorkspace();
         }
 
         private void DeleteCurrentWorkspaceButton_Click(object sender, EventArgs e)
