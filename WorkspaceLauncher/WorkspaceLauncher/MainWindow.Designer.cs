@@ -46,6 +46,8 @@
             // 
             // MainMenu
             // 
+            this.MainMenu.BackColor = System.Drawing.SystemColors.Control;
+            this.MainMenu.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.MainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AddApplicationButton,
             this.toolStripSeparator1,
@@ -58,16 +60,17 @@
             this.LaunchButton});
             this.MainMenu.Location = new System.Drawing.Point(0, 0);
             this.MainMenu.Name = "MainMenu";
-            this.MainMenu.Size = new System.Drawing.Size(794, 38);
+            this.MainMenu.Size = new System.Drawing.Size(800, 54);
             this.MainMenu.TabIndex = 0;
             this.MainMenu.Text = "MainMenu";
             // 
             // AddApplicationButton
             // 
-            this.AddApplicationButton.Image = ((System.Drawing.Image)(resources.GetObject("AddApplicationButton.Image")));
+            this.AddApplicationButton.BackColor = System.Drawing.SystemColors.Control;
+            this.AddApplicationButton.Image = global::WorkspaceLauncher.Properties.Resources.WorkspaceLauncherAddEntry;
             this.AddApplicationButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.AddApplicationButton.Name = "AddApplicationButton";
-            this.AddApplicationButton.Size = new System.Drawing.Size(97, 35);
+            this.AddApplicationButton.Size = new System.Drawing.Size(97, 51);
             this.AddApplicationButton.Text = "Add Application";
             this.AddApplicationButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.AddApplicationButton.Click += new System.EventHandler(this.AddApplicationButton_Click);
@@ -75,24 +78,24 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 38);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 54);
             // 
             // NewWorkspaceButton
             // 
-            this.NewWorkspaceButton.Image = ((System.Drawing.Image)(resources.GetObject("NewWorkspaceButton.Image")));
+            this.NewWorkspaceButton.Image = global::WorkspaceLauncher.Properties.Resources.WorkspaceLauncherAddWorkspace;
             this.NewWorkspaceButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.NewWorkspaceButton.Name = "NewWorkspaceButton";
-            this.NewWorkspaceButton.Size = new System.Drawing.Size(133, 35);
+            this.NewWorkspaceButton.Size = new System.Drawing.Size(133, 51);
             this.NewWorkspaceButton.Text = "Create New Workspace";
             this.NewWorkspaceButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.NewWorkspaceButton.Click += new System.EventHandler(this.NewWorkspaceButton_Click);
             // 
             // DeleteCurrentWorkspaceButton
             // 
-            this.DeleteCurrentWorkspaceButton.Image = ((System.Drawing.Image)(resources.GetObject("DeleteCurrentWorkspaceButton.Image")));
+            this.DeleteCurrentWorkspaceButton.Image = global::WorkspaceLauncher.Properties.Resources.WorkspaceLauncherDeleteWorkspace;
             this.DeleteCurrentWorkspaceButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DeleteCurrentWorkspaceButton.Name = "DeleteCurrentWorkspaceButton";
-            this.DeleteCurrentWorkspaceButton.Size = new System.Drawing.Size(148, 35);
+            this.DeleteCurrentWorkspaceButton.Size = new System.Drawing.Size(148, 51);
             this.DeleteCurrentWorkspaceButton.Text = "Delete Current Workspace";
             this.DeleteCurrentWorkspaceButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.DeleteCurrentWorkspaceButton.Click += new System.EventHandler(this.DeleteCurrentWorkspaceButton_Click);
@@ -100,13 +103,13 @@
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 38);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 54);
             // 
             // CurrentWorkspaceLabel
             // 
             this.CurrentWorkspaceLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.CurrentWorkspaceLabel.Name = "CurrentWorkspaceLabel";
-            this.CurrentWorkspaceLabel.Size = new System.Drawing.Size(111, 35);
+            this.CurrentWorkspaceLabel.Size = new System.Drawing.Size(111, 51);
             this.CurrentWorkspaceLabel.Text = "Current Workspace:";
             // 
             // WorkspaceComboBox
@@ -121,15 +124,15 @@
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 38);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 54);
             // 
             // LaunchButton
             // 
             this.LaunchButton.AutoToolTip = false;
-            this.LaunchButton.Image = ((System.Drawing.Image)(resources.GetObject("LaunchButton.Image")));
+            this.LaunchButton.Image = global::WorkspaceLauncher.Properties.Resources.WorkspaceLauncherLaunchAll;
             this.LaunchButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.LaunchButton.Name = "LaunchButton";
-            this.LaunchButton.Size = new System.Drawing.Size(67, 35);
+            this.LaunchButton.Size = new System.Drawing.Size(67, 51);
             this.LaunchButton.Text = "Launch All";
             this.LaunchButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.LaunchButton.ToolTipText = "Launch All Applications in Current Workspace";
@@ -140,15 +143,15 @@
             this.AppListPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.AppListPanel.Location = new System.Drawing.Point(0, 77);
+            this.AppListPanel.Location = new System.Drawing.Point(0, 92);
             this.AppListPanel.Name = "AppListPanel";
-            this.AppListPanel.Size = new System.Drawing.Size(794, 372);
+            this.AppListPanel.Size = new System.Drawing.Size(800, 357);
             this.AppListPanel.TabIndex = 3;
             // 
             // CurrentWorkspaceNameBox
             // 
             this.CurrentWorkspaceNameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CurrentWorkspaceNameBox.Location = new System.Drawing.Point(12, 42);
+            this.CurrentWorkspaceNameBox.Location = new System.Drawing.Point(12, 57);
             this.CurrentWorkspaceNameBox.Name = "CurrentWorkspaceNameBox";
             this.CurrentWorkspaceNameBox.Size = new System.Drawing.Size(469, 29);
             this.CurrentWorkspaceNameBox.TabIndex = 4;
@@ -157,10 +160,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(794, 461);
+            this.ClientSize = new System.Drawing.Size(800, 461);
             this.Controls.Add(this.CurrentWorkspaceNameBox);
             this.Controls.Add(this.AppListPanel);
             this.Controls.Add(this.MainMenu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainWindow";
             this.Text = "Workspace Launcher";
             this.MainMenu.ResumeLayout(false);
