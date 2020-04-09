@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WorkspaceLauncher.Data;
 using System.Xml.Serialization.Configuration;
+using System.IO;
 
 namespace WorkspaceLauncher
 {
@@ -25,6 +26,8 @@ namespace WorkspaceLauncher
             InitializeComponent();
             
             CreateDataBindings();
+
+            ValidatePath();
         }
 
         private void CreateDataBindings()
@@ -32,6 +35,20 @@ namespace WorkspaceLauncher
             NameBox.DataBindings.Add("Text", Entry, "Name", false, DataSourceUpdateMode.OnPropertyChanged);
             PathValueLabel.DataBindings.Add("Text", Entry, "Path", false, DataSourceUpdateMode.OnPropertyChanged);
             ParameterBox.DataBindings.Add("Text", Entry, "Parameters", false, DataSourceUpdateMode.OnPropertyChanged);
+        }
+
+        private void ValidatePath()
+        {
+            if (File.Exists(Entry.Path))
+            {
+                InvalidPathLabel.Visible = false;
+                LaunchButton.Enabled = true;
+            }
+            else
+            {
+                InvalidPathLabel.Visible = true;
+                LaunchButton.Enabled = false;
+            }
         }
 
         private void PathButton_Click(object sender, EventArgs e)
@@ -43,6 +60,8 @@ namespace WorkspaceLauncher
             {
                 PathValueLabel.Text = openFile.FileName;
                 PathToolTip.SetToolTip(PathValueLabel, openFile.FileName);
+
+                ValidatePath();
             }
         }
 

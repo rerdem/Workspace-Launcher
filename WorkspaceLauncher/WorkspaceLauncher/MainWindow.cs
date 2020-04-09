@@ -15,6 +15,7 @@ namespace WorkspaceLauncher
     public partial class MainWindow : Form
     {
         private WorkspaceManager wm;
+
         public MainWindow(WorkspaceManager manager)
         {
             wm = manager;
@@ -25,7 +26,6 @@ namespace WorkspaceLauncher
             InitializeComponent();
 
             RefreshAllContent();
-
         }
 
         private void RefreshAllContent()
@@ -95,7 +95,6 @@ namespace WorkspaceLauncher
 
         private void WorkspaceComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
             Workspace selectedWorkspace = WorkspaceComboBox.SelectedItem as Workspace;
             if (selectedWorkspace!=null)
             {

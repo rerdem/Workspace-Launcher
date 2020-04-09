@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -138,8 +139,6 @@ namespace WorkspaceLauncher.Management
             if (Workspaces.Count > 0)
             {
                 SyncWorkspaceIDCounter();
-                //TO DO
-                //!!!!!! Validate exe paths or throw warning and deactivate launch buttons!!!!!!!
             }
             else
             {

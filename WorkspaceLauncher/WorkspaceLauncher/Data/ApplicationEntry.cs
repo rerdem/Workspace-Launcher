@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -87,7 +88,10 @@ namespace WorkspaceLauncher.Data
 
         public void StartApplication()
         {
-            ProcessStarter.StartProcess(Path, Parameters);
+            if (File.Exists(Path))
+            {
+                ProcessStarter.StartProcess(Path, Parameters);
+            }
         }
 
         protected void OnPropertyChanged([CallerMemberName] string name = null)

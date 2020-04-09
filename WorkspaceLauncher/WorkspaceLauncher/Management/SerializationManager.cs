@@ -13,8 +13,8 @@ namespace WorkspaceLauncher.Management
     {
         public event EventHandler WorkspacesSaved;
 
-        private string FolderPath;
-        private string WorkspacesFilePath;
+        private readonly string FolderPath;
+        private readonly string WorkspacesFilePath;
 
         public SerializationManager()
         {
@@ -22,24 +22,6 @@ namespace WorkspaceLauncher.Management
             WorkspacesFilePath = $"{FolderPath}workspaces{Path.DirectorySeparatorChar}workspaces.json";
             Directory.CreateDirectory($"{FolderPath}workspaces");
         }
-
-        //private void RefreshWorkspaceList()
-        //{
-        //    List<string> list = Directory.GetFiles(WorkspacesFilePath, "*.json")
-        //                .Select(Path.GetFileNameWithoutExtension)
-        //                .ToList();
-        //}
-
-        //public void DeleteFile(string fileNameToDelete)
-        //{
-        //    string fullPath = $"{WorkspacesFilePath}{fileNameToDelete}.json";
-        //    File.Delete(fullPath);
-        //}
-
-        //public bool DoesWorkspaceJsonExist()
-        //{
-        //    return File.Exists(WorkspacesFilePath);
-        //}
 
         public void ExportWorkspacesToJSON(List<Workspace> workspaceList)
         {

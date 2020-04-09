@@ -37,6 +37,7 @@
             this.ButtonPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.LaunchButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
+            this.InvalidPathLabel = new System.Windows.Forms.Label();
             this.PathPanel = new System.Windows.Forms.Panel();
             this.PathValueLabel = new System.Windows.Forms.Label();
             this.PathButton = new System.Windows.Forms.Button();
@@ -119,6 +120,7 @@
             this.TablePanel.SetColumnSpan(this.ButtonPanel, 3);
             this.ButtonPanel.Controls.Add(this.LaunchButton);
             this.ButtonPanel.Controls.Add(this.DeleteButton);
+            this.ButtonPanel.Controls.Add(this.InvalidPathLabel);
             this.ButtonPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.ButtonPanel.Location = new System.Drawing.Point(3, 65);
@@ -147,6 +149,18 @@
             this.DeleteButton.Text = "Delete Entry";
             this.DeleteButton.UseVisualStyleBackColor = true;
             this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            // 
+            // InvalidPathLabel
+            // 
+            this.InvalidPathLabel.AutoSize = true;
+            this.InvalidPathLabel.ForeColor = System.Drawing.Color.Red;
+            this.InvalidPathLabel.Location = new System.Drawing.Point(286, 3);
+            this.InvalidPathLabel.Margin = new System.Windows.Forms.Padding(3);
+            this.InvalidPathLabel.Name = "InvalidPathLabel";
+            this.InvalidPathLabel.Size = new System.Drawing.Size(186, 13);
+            this.InvalidPathLabel.TabIndex = 2;
+            this.InvalidPathLabel.Text = "Path Error: Please assign a valid path.";
+            this.InvalidPathLabel.Visible = false;
             // 
             // PathPanel
             // 
@@ -214,6 +228,7 @@
             this.TablePanel.ResumeLayout(false);
             this.TablePanel.PerformLayout();
             this.ButtonPanel.ResumeLayout(false);
+            this.ButtonPanel.PerformLayout();
             this.PathPanel.ResumeLayout(false);
             this.MainPanel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -236,5 +251,6 @@
         private System.Windows.Forms.Panel MainPanel;
         private System.Windows.Forms.Label PathValueLabel;
         private System.Windows.Forms.ToolTip PathToolTip;
+        private System.Windows.Forms.Label InvalidPathLabel;
     }
 }
