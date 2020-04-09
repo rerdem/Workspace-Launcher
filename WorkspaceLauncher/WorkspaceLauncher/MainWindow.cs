@@ -84,7 +84,13 @@ namespace WorkspaceLauncher
 
         private void DeleteCurrentWorkspaceButton_Click(object sender, EventArgs e)
         {
-            wm.RemoveCurrentWorkspace();
+            DialogResult result = MessageBox.Show("You are about to delete the current workspace. This action cannot be undone. Do you wish to proceed?",
+                                     "Confirm Workspace Deletion!",
+                                     MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                wm.RemoveCurrentWorkspace();
+            }
         }
 
         private void WorkspaceComboBox_SelectedIndexChanged(object sender, EventArgs e)

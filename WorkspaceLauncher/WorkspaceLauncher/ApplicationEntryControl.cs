@@ -48,9 +48,15 @@ namespace WorkspaceLauncher
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            ApplicationEntryEventArgs args = new ApplicationEntryEventArgs();
-            args.Entry = Entry;
-            OnDeletionRequested(args);
+            DialogResult result = MessageBox.Show($"You are about to delete the entry named \"{Entry.Name}\" from the current workspace. This action cannot be undone. Do you wish to proceed?",
+                                     "Confirm Entry Deletion!",
+                                     MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                ApplicationEntryEventArgs args = new ApplicationEntryEventArgs();
+                args.Entry = Entry;
+                OnDeletionRequested(args);
+            }
         }
 
         private void LaunchButton_Click(object sender, EventArgs e)
