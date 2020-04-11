@@ -73,7 +73,7 @@
             this.TablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.TablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.TablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.TablePanel.Size = new System.Drawing.Size(711, 97);
+            this.TablePanel.Size = new System.Drawing.Size(834, 97);
             this.TablePanel.TabIndex = 0;
             // 
             // NameLabel
@@ -90,7 +90,7 @@
             // 
             this.PathLabel.AutoSize = true;
             this.PathLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PathLabel.Location = new System.Drawing.Point(239, 0);
+            this.PathLabel.Location = new System.Drawing.Point(280, 0);
             this.PathLabel.Name = "PathLabel";
             this.PathLabel.Size = new System.Drawing.Size(33, 13);
             this.PathLabel.TabIndex = 1;
@@ -100,7 +100,7 @@
             // 
             this.ParameterLabel.AutoSize = true;
             this.ParameterLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ParameterLabel.Location = new System.Drawing.Point(476, 0);
+            this.ParameterLabel.Location = new System.Drawing.Point(558, 0);
             this.ParameterLabel.Name = "ParameterLabel";
             this.ParameterLabel.Size = new System.Drawing.Size(70, 13);
             this.ParameterLabel.TabIndex = 2;
@@ -110,9 +110,9 @@
             // 
             this.ParameterBox.Dock = System.Windows.Forms.DockStyle.Top;
             this.ParameterBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ParameterBox.Location = new System.Drawing.Point(476, 23);
+            this.ParameterBox.Location = new System.Drawing.Point(558, 23);
             this.ParameterBox.Name = "ParameterBox";
-            this.ParameterBox.Size = new System.Drawing.Size(232, 26);
+            this.ParameterBox.Size = new System.Drawing.Size(273, 26);
             this.ParameterBox.TabIndex = 5;
             // 
             // ButtonPanel
@@ -125,14 +125,14 @@
             this.ButtonPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.ButtonPanel.Location = new System.Drawing.Point(3, 65);
             this.ButtonPanel.Name = "ButtonPanel";
-            this.ButtonPanel.Size = new System.Drawing.Size(705, 29);
+            this.ButtonPanel.Size = new System.Drawing.Size(828, 29);
             this.ButtonPanel.TabIndex = 6;
             this.ButtonPanel.WrapContents = false;
             // 
             // LaunchButton
             // 
             this.LaunchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LaunchButton.Location = new System.Drawing.Point(559, 3);
+            this.LaunchButton.Location = new System.Drawing.Point(682, 3);
             this.LaunchButton.Name = "LaunchButton";
             this.LaunchButton.Size = new System.Drawing.Size(143, 23);
             this.LaunchButton.TabIndex = 1;
@@ -142,7 +142,7 @@
             // 
             // DeleteButton
             // 
-            this.DeleteButton.Location = new System.Drawing.Point(478, 3);
+            this.DeleteButton.Location = new System.Drawing.Point(601, 3);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(75, 23);
             this.DeleteButton.TabIndex = 0;
@@ -154,7 +154,7 @@
             // 
             this.InvalidPathLabel.AutoSize = true;
             this.InvalidPathLabel.ForeColor = System.Drawing.Color.Red;
-            this.InvalidPathLabel.Location = new System.Drawing.Point(286, 3);
+            this.InvalidPathLabel.Location = new System.Drawing.Point(409, 3);
             this.InvalidPathLabel.Margin = new System.Windows.Forms.Padding(3);
             this.InvalidPathLabel.Name = "InvalidPathLabel";
             this.InvalidPathLabel.Size = new System.Drawing.Size(186, 13);
@@ -167,9 +167,9 @@
             this.PathPanel.Controls.Add(this.PathValueLabel);
             this.PathPanel.Controls.Add(this.PathButton);
             this.PathPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PathPanel.Location = new System.Drawing.Point(239, 23);
+            this.PathPanel.Location = new System.Drawing.Point(280, 23);
             this.PathPanel.Name = "PathPanel";
-            this.PathPanel.Size = new System.Drawing.Size(231, 36);
+            this.PathPanel.Size = new System.Drawing.Size(272, 36);
             this.PathPanel.TabIndex = 7;
             // 
             // PathValueLabel
@@ -182,14 +182,14 @@
             this.PathValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PathValueLabel.Location = new System.Drawing.Point(0, 0);
             this.PathValueLabel.Name = "PathValueLabel";
-            this.PathValueLabel.Size = new System.Drawing.Size(202, 26);
+            this.PathValueLabel.Size = new System.Drawing.Size(243, 26);
             this.PathValueLabel.TabIndex = 2;
             this.PathValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // PathButton
             // 
             this.PathButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PathButton.Location = new System.Drawing.Point(205, 0);
+            this.PathButton.Location = new System.Drawing.Point(246, 0);
             this.PathButton.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.PathButton.MaximumSize = new System.Drawing.Size(36, 26);
             this.PathButton.Name = "PathButton";
@@ -205,7 +205,7 @@
             this.NameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NameBox.Location = new System.Drawing.Point(3, 23);
             this.NameBox.Name = "NameBox";
-            this.NameBox.Size = new System.Drawing.Size(230, 26);
+            this.NameBox.Size = new System.Drawing.Size(271, 26);
             this.NameBox.TabIndex = 3;
             // 
             // MainPanel
@@ -215,7 +215,7 @@
             this.MainPanel.Controls.Add(this.TablePanel);
             this.MainPanel.Location = new System.Drawing.Point(4, 4);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(720, 107);
+            this.MainPanel.Size = new System.Drawing.Size(843, 107);
             this.MainPanel.TabIndex = 1;
             // 
             // ApplicationEntryControl
@@ -224,7 +224,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.MainPanel);
             this.Name = "ApplicationEntryControl";
-            this.Size = new System.Drawing.Size(728, 114);
+            this.Size = new System.Drawing.Size(850, 114);
             this.TablePanel.ResumeLayout(false);
             this.TablePanel.PerformLayout();
             this.ButtonPanel.ResumeLayout(false);

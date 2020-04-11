@@ -39,8 +39,10 @@
             this.WorkspaceComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.LaunchButton = new System.Windows.Forms.ToolStripButton();
+            this.ShortcutButton = new System.Windows.Forms.ToolStripButton();
             this.AppListPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.CurrentWorkspaceNameBox = new System.Windows.Forms.TextBox();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.MainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,13 +56,15 @@
             this.NewWorkspaceButton,
             this.DeleteCurrentWorkspaceButton,
             this.toolStripSeparator2,
+            this.ShortcutButton,
+            this.toolStripSeparator4,
             this.CurrentWorkspaceLabel,
             this.WorkspaceComboBox,
             this.toolStripSeparator3,
             this.LaunchButton});
             this.MainMenu.Location = new System.Drawing.Point(0, 0);
             this.MainMenu.Name = "MainMenu";
-            this.MainMenu.Size = new System.Drawing.Size(800, 54);
+            this.MainMenu.Size = new System.Drawing.Size(894, 54);
             this.MainMenu.TabIndex = 0;
             this.MainMenu.Text = "MainMenu";
             // 
@@ -138,6 +142,17 @@
             this.LaunchButton.ToolTipText = "Launch All Applications in Current Workspace";
             this.LaunchButton.Click += new System.EventHandler(this.LaunchButton_Click);
             // 
+            // ShortcutButton
+            // 
+            this.ShortcutButton.Image = global::WorkspaceLauncher.Properties.Resources.WorkspaceLauncherCreateShortcut;
+            this.ShortcutButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ShortcutButton.Name = "ShortcutButton";
+            this.ShortcutButton.Size = new System.Drawing.Size(93, 51);
+            this.ShortcutButton.Text = "Create Shortcut";
+            this.ShortcutButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ShortcutButton.ToolTipText = "Create Shortcut";
+            this.ShortcutButton.Click += new System.EventHandler(this.ShortcutButton_Click);
+            // 
             // AppListPanel
             // 
             this.AppListPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -145,7 +160,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AppListPanel.Location = new System.Drawing.Point(0, 92);
             this.AppListPanel.Name = "AppListPanel";
-            this.AppListPanel.Size = new System.Drawing.Size(800, 357);
+            this.AppListPanel.Size = new System.Drawing.Size(894, 357);
             this.AppListPanel.TabIndex = 3;
             // 
             // CurrentWorkspaceNameBox
@@ -156,11 +171,16 @@
             this.CurrentWorkspaceNameBox.Size = new System.Drawing.Size(469, 29);
             this.CurrentWorkspaceNameBox.TabIndex = 4;
             // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 54);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 461);
+            this.ClientSize = new System.Drawing.Size(894, 461);
             this.Controls.Add(this.CurrentWorkspaceNameBox);
             this.Controls.Add(this.AppListPanel);
             this.Controls.Add(this.MainMenu);
@@ -188,6 +208,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripLabel CurrentWorkspaceLabel;
         private System.Windows.Forms.ToolStripComboBox WorkspaceComboBox;
+        private System.Windows.Forms.ToolStripButton ShortcutButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }
 }
 

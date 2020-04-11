@@ -83,6 +83,16 @@ namespace WorkspaceLauncher.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap WorkspaceLauncherCreateShortcut {
+            get {
+                object obj = ResourceManager.GetObject("WorkspaceLauncherCreateShortcut", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap WorkspaceLauncherDeleteWorkspace {
             get {
                 object obj = ResourceManager.GetObject("WorkspaceLauncherDeleteWorkspace", resourceCulture);

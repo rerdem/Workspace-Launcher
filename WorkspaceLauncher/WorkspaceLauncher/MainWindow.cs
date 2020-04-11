@@ -127,5 +127,28 @@ namespace WorkspaceLauncher
         {
             wm.LaunchAllAppsOfCurrentWorkspace();
         }
+
+        private void ShortcutButton_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Shortcut|*.lnk";
+            saveFileDialog.Title = "Create a Shortcut";
+            saveFileDialog.ShowDialog();
+
+            if (!string.IsNullOrEmpty(saveFileDialog.FileName))
+            {
+                bool shortcutOpenWindow = false;
+
+                DialogResult result = MessageBox.Show("Do you want Workspace Launcher to open after using the shortcut?",
+                                     "Shortcut Window Mode",
+                                     MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    shortcutOpenWindow = true;
+                }
+
+                ShortcutCreator.CreateShortcut(saveFileDialog.FileName, wm.CurrentWorkspace, shortcutOpenWindow);
+            }
+        }
     }
 }
