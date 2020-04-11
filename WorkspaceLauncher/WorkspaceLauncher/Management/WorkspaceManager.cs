@@ -120,6 +120,16 @@ namespace WorkspaceLauncher.Management
             }
         }
 
+        public void LaunchAllAppsOfWorkspace(int workspaceID)
+        {
+            Workspace workspaceToLaunch = Workspaces.Where(w => w.ID == workspaceID).First();
+
+            foreach (ApplicationEntry entry in workspaceToLaunch.ApplicationEntries)
+            {
+                entry.StartApplication();
+            }
+        }
+
         private void SyncWorkspaceIDCounter()
         {
             WorkspaceIDCounter = 0;

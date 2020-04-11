@@ -67,6 +67,7 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Management\ArgumentParser.cs" />
     <Compile Include="Management\ProcessStarter.cs" />
     <Compile Include="Management\SerializationManager.cs" />
     <Compile Include="Management\ShortcutCreator.cs" />
